@@ -65,6 +65,13 @@ Route::get('/tasks/{id}', function($id) {
     ]);
 });
 
-Route::get('/tasks/{id}/edit', function() {
+Route::get('/tasks/{id}/edit', function($id) {
+    $task = DB::table('tasks')->where('id', $id)->first();
+    return view('task.edit', [
+        'task' => $task
+    ]);
+});
+
+Route::put('/tasks/{id}/edit', function($id) {
     return view('task.edit');
 });
