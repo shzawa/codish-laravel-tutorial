@@ -58,10 +58,13 @@ Route::post('/tasks/new', function() {
     return redirect('/tasks');
 });
 
-Route::get('/tasks/{taskId}', function() {
-    return view('task.detail');
+Route::get('/tasks/{id}', function($id) {
+    $task = DB::table('tasks')->where('id', $id)->first();
+    return view('task.detail', [
+        'task' => $task
+    ]);
 });
 
-Route::get('/tasks/{taskId}/edit', function() {
+Route::get('/tasks/{id}/edit', function() {
     return view('task.edit');
 });
