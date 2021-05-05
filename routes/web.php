@@ -33,6 +33,15 @@ Route::get('/tasks', function () {
 Route::get('/tasks/new', function() {
     return view('task.new');
 });
+Route::post('/tasks/new', function() {
+    DB::table('tasks')->insert([
+        'name' => request()->get('name'),
+        'date_on' => request()->get('date_on'),
+        'body' => request()->get('body'),
+    ]);
+
+    return redirect('/tasks');
+});
 Route::get('/tasks/{taskId}', function() {
     return view('task.detail');
 });
