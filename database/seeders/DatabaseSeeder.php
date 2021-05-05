@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('tasks')->insert([
             'name' => '旅行の計画を立てる',
-            'date_on' => Carbon::yesterday(),
+            'date_on' => Carbon::tomorrow(),
             'body' => '友達との旅行の相談を Zoom で'
         ]);
         DB::table('tasks')->insert([

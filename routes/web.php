@@ -24,7 +24,7 @@ Route::get('/tasks', function () {
     $now = Carbon::now();
     $tasks = DB::table('tasks')
         ->where('name', 'like', "%$keyword%")
-        ->whereDate('date_on', '>=', $now)
+        ->whereDate('date_on', '<=', $now)
         ->get();
     return view('task.list', [
         'tasks' => $tasks
