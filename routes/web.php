@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,11 @@ Route::get('/', function () {
 });
 
 Route::get('/tasks', function () {
-    return view('task.list');
+    $keyword = request()->get('keyword');
+    $tasks = DB::table('tasks')->where('name', 'like', "%$keyword%")->get();
+    return view('task.list', [
+        'tasks' => $tasks
+    ]);
 });
 Route::get('/tasks/new', function() {
     return view('task.new');
