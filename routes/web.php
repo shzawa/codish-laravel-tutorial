@@ -23,3 +23,9 @@ Route::get('/tasks', function () {
 Route::get('/tasks/new', function() {
     return view('task.new');
 });
+Route::get('/tasks/{taskId}', function() {
+    return view('task.detail');
+});
+Route::get('/tasks/{taskId}/edit', function() {
+    return view('task.edit');
+});
