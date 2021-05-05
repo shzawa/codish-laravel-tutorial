@@ -30,9 +30,11 @@ Route::get('/tasks', function () {
         'tasks' => $tasks
     ]);
 });
+
 Route::get('/tasks/new', function() {
     return view('task.new');
 });
+
 Route::post('/tasks/new', function() {
     $payload = [
         'name' => request()->get('name'),
@@ -55,9 +57,11 @@ Route::post('/tasks/new', function() {
     DB::table('tasks')->insert($payload);
     return redirect('/tasks');
 });
+
 Route::get('/tasks/{taskId}', function() {
     return view('task.detail');
 });
+
 Route::get('/tasks/{taskId}/edit', function() {
     return view('task.edit');
 });
