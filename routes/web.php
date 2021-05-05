@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,11 @@ Route::get('/', function () {
 
 Route::get('/tasks', function () {
     $keyword = request()->get('keyword');
-    $tasks = DB::table('tasks')->where('name', 'like', "%$keyword%")->get();
+    $now = Carbon::now();
+    $tasks = DB::table('tasks')
+        ->where('name', 'like', "%$keyword%")
+        ->whereDate('date_on', '>=', $now)
+        ->get();
     return view('task.list', [
         'tasks' => $tasks
     ]);

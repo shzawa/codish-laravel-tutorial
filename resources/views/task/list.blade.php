@@ -23,9 +23,13 @@
                 <a href="/tasks/new" class="btn btn-light">タスクの追加</a>
             </div>
             <ul class="list-group list-group-flush">
-                @foreach($tasks as $task)
-                <li class="list-group-item">{{ $task->name }}</li>
-                @endforeach
+                @if (count($tasks) > 0)
+                    @foreach($tasks as $task)
+                    <li class="list-group-item">{{ $task->name }}</li>
+                    @endforeach
+                @else
+                    ヒットしませんでした。
+                @endif
             </ul>
         </x-task-layout>
     </body>
