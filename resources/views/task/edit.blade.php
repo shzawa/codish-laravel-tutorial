@@ -15,7 +15,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">日付</label>
-                <input type="date" class="form-control" name="date_on" value=""> {{-- Y-m-dでformattingしなければ表示されない --}}
+                <input type="date" class="form-control" name="date_on" value="{{ Carbon\Carbon::parse($task->date_on)->format('Y-m-d') }}">
                 @if (session()->get('errors.date_on'))
                 <p class="text-danger">タスクの日付を入力してください</p>
                 @endif
